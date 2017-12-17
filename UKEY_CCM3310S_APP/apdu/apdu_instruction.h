@@ -1,0 +1,104 @@
+#ifdef  APDU_INSTRUCTION_SYMBOL
+#define	APDU_INSTRUCTION_EXT
+#else	
+#define	APDU_INSTRUCTION_EXT extern
+#endif
+
+
+typedef struct _apdu{
+	unsigned char CLA;
+	unsigned char INS;
+	unsigned char PP1;
+	unsigned char PP2;
+	unsigned char LEN[2];
+	unsigned char pInData[1024];
+	unsigned char pOutData[1024];
+	unsigned char SW1;
+	unsigned char SW2;
+	unsigned int LC;
+	unsigned int  RLE;
+}APDU;
+
+
+
+
+typedef struct
+{				
+	UINT8 u8CLA;
+	UINT8 u8INS;
+	UINT8 u8Life_Period;
+	UINT8 u8AuthFlag;
+	UINT16 (*INS_Address)(UINT8 *p_u8APDU, UINT8 *p_u8Response, UINT16 *p_u16LeLength);
+} INS_Attribute;
+
+
+#define LIFE_CYCLE_MANUFACTURER			0x00	// 出厂态
+#define LIFE_CYCLE_ISSUER					0x01	//发行态
+#define LIFE_CYCLE_DISABLE					0xFF	//任何生命周期都可执行
+
+//仅出厂态可执行
+#define LIFE_CYCLE_CONTROL_00	LIFE_CYCLE_MANUFACTURER
+//仅发行态可执行
+#define LIFE_CYCLE_CONTROL_01	LIFE_CYCLE_ISSUER
+//出厂态和发行态都可执行
+#define LIFE_CYCLE_CONTROL_FF		LIFE_CYCLE_DISABLE
+
+
+#define AUTH_EXTERNAL				0x01	//外部认证
+#define AUTH_PIN						0x02	//PIN
+#define AUTH_DISABLE				0xFF	//不需任何认证和PIN校验都可执行
+
+//仅需外部认证即可执行
+#define	AUTH_CONTROL_00			AUTH_EXTERNAL
+//仅需PIN码即可执行
+#define	AUTH_CONTROL_01			AUTH_PIN
+//外部认证和PIN码都通过方可执行
+#define	AUTH_CONTROL_02			(AUTH_EXTERNAL|AUTH_PIN)
+//不需任何认证即可执行
+#define	AUTH_CONTROL_FF			AUTH_DISABLE
+
+
+//定义SW1SW2
+#define SW_SUCCESS							0x9000
+#define SW_AUTHENTICATION_FAIL		0x63CF
+#define SW_INTER_EXCUTE_ERROR		0x6400
+#define SW_EEPROM_ERROR				0x6581
+#define SW_LENGTH_ERROR					0x6700
+#define SW_INSTRUCTION_INVALID		0x6901
+#define SW_SECURITY_NOT_SATISFIED	0x6982
+#define SW_KUT_TIMES_OVER				0x6983
+#define SW_QUOTE_INVALID_DATA		0x6984
+#define SW_CONDITION_NOT_SATISFIED	0x6985
+#define SW_ONLINE_COUNTER_OVER		0x6986
+#define SW_CALCULATE_ERROR				0x6988
+#define SW_DATA_ERROR					0x6A80
+//#define SW_P1P2_ERROR					0x6A86
+#define SW_NO_QUOTE_DATA				0x6A88
+#define SW_INS_NOT_SUPPORTED			0x6D00
+#define SW_CLA_NOT_SUPPORTED			0x6E00
+#define SW_UNKNOWN						0x6F00
+#define SW_VERIFY_SIGNATURE_ERROR	0x9086
+#define SW_FILE_ERROR						0x9E20
+#define SW_ALGORITHM_ERROR			0x9E30
+#define SW_AUTHENTICATION_ERROR		0x9E57
+#define SW_CREATE_SESSION_ERROR		0x9E60
+#define SW_CA_CERTIFICATION_ERROR	0x9E5E
+
+
+
+APDU_INSTRUCTION_EXT UINT8 g_u8LifeCycle;		//生命周期
+APDU_INSTRUCTION_EXT UINT8 g_u8AuthFlg;		//内部/外部认证和PIN验证标识
+
+APDU_INSTRUCTION_EXT UINT16 g_u16APDUSW;
+APDU_INSTRUCTION_EXT UINT8 g_u8APDUP1;
+APDU_INSTRUCTION_EXT UINT8 g_u8APDUP2;
+APDU_INSTRUCTION_EXT UINT16 g_u16APDULc;
+APDU_INSTRUCTION_EXT UINT16 g_u16APDULe;
+APDU_INSTRUCTION_EXT UINT8 *gp_u8APDUData;
+APDU_INSTRUCTION_EXT UINT16 g_u16APDULen;
+APDU_INSTRUCTION_EXT UINT8 g_u16APDUCase;
+APDU_INSTRUCTION_EXT UINT8 g_u16APDUChain;
+APDU_INSTRUCTION_EXT APDU g_APDU;
+
+APDU_INSTRUCTION_EXT UINT8 APDUprocess(UINT8 *p_u8APDU, UINT16 u16APDULen, UINT8 *p_u8Response, UINT16 *p_u16RespLen);
+

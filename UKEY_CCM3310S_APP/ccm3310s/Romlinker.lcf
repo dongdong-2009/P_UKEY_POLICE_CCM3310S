@@ -1,0 +1,69 @@
+#
+#   linker.lcf  -   linker command file 
+
+
+
+MEMORY {
+	VECTORS(RX) : ORIGIN = 0x00004000,  LENGTH = 0x00000000    //内部flash
+	TEXT (RX)   : ORIGIN = 0x00004200,  LENGTH = 0x00000000
+	//TEXT (RX)   : ORIGIN = 0x00005000,  LENGTH = 0x00000000
+	
+	DATA (RW)   : ORIGIN = 0x00801200,  LENGTH = 0x00000000    //内部RAM。//0x800000为USB协议FIFO地址；0x800200为 APDU和RESPONSE缓冲区起始地址，大小为4K，用户可修改大小，即调整DATA段的起始地址；
+	BSS  (RW)	: ORIGIN = AFTER(DATA), LENGTH = 0x00000000
+}
+
+
+
+
+
+SECTIONS {
+
+	 .vectormap :
+    {		
+	    
+     . = ALIGN(0x400);                    // Align table on 1024-byte boundary per            
+     __exception_table_begin = .;
+    vtable.c      (.rodata)               // File with vector table
+     __exception_table_end = .;
+    } >VECTORS
+    
+
+    .main_application :
+    {
+    startup.c    (.text)
+      *		(.text)  
+	  * 	(.rodata)                    //常量也放在TEXT区
+    } > TEXT
+    
+    
+    
+	__data_ROM_begin = .;
+	.data :AT(__data_ROM_begin)
+    { 
+    	. = ALIGN(0x4);	
+    	__data_begin = .;
+    	*		 (.data)                 //全局变量
+		. = ALIGN(0x4);
+		__data_end = .;
+    } > DATA 
+  
+    
+    
+    
+    
+    .main_app_bss :
+    {
+       . = ALIGN(0x4);
+    	__bss_begin = .;
+		*		 (.bss)
+		__bss_end =.;	
+    } > BSS
+    
+    
+    __stack_end 	= (. + 7) & ~7;
+	//__stack_begin 	= __stack_end + 0x1400; 	
+	__stack_begin  = 0x00804000;
+
+}
+
+

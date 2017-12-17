@@ -1,0 +1,33 @@
+---- HAL_UART_SEND_ASC Matches (32 in 6 files) ----
+App_command.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\apdu):			HAL_UART_SEND_ASC((unsigned char *)MFSTART,512);			
+App_command.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\apdu):		HAL_UART_SEND_ASC(pbout,33);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):		HAL_UART_SEND_ASC(&sector_list[num],1);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):			HAL_UART_SEND_ASC((U8 *)&tmp_addr,4);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):			HAL_UART_SEND_ASC((U8 *)&tmp_addr,4);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):		HAL_UART_SEND_ASC((U8*)p_g_EF_head,sizeof(FILE_HEAD_INFO));
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):				HAL_UART_SEND_ASC((U8*)p_g_EF_head,sizeof(FILE_HEAD_INFO));
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos)://	HAL_UART_SEND_ASC((U8*)buf,inlen);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos)://	HAL_UART_SEND_ASC((U8*)key,16);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos)://	HAL_UART_SEND_ASC((U8*)iv,16);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos)://	HAL_UART_SEND_ASC((U8*)&alg_type,1);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	//HAL_UART_SEND_ASC((U8*)&inlen,2);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((unsigned char*)pubkey,64);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC(p_sector_info->sector_list,20);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):		HAL_UART_SEND_ASC(buf+i,35);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((U8*)0x1ec00,126);
+Cos.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((U8*)0x1f000,126);
+Debug.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\debug):void HAL_UART_SEND_ASC(unsigned char* pInData,unsigned short len)
+Debug.h (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\debug):DEBUG_EXT    void HAL_UART_SEND_ASC(unsigned char* pInData,unsigned short len);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((U8*)&tmp_len,2);	
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((U8*)&tmp_len,2);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((U8*)&len1,2);	
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos)://	HAL_UART_SEND_ASC( (UINT8*)mypublicKey.exponent,rsaBits/8);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos)://	HAL_UART_SEND_ASC( (UINT8*)pRSAkey->pke,rsaBits/8);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC( (UINT8*)myprivateKey.prime[0],rsaBits/16);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC( (UINT8*)myprivateKey.prime[1],rsaBits/16);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC( (UINT8*)myprivateKey.primeExponent[0],rsaBits/16);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC( (UINT8*)myprivateKey.primeExponent[1],rsaBits/16);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC( (UINT8*)myprivateKey.coefficient,rsaBits/16);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((unsigned char*)pPubkey,64);
+Hal_alg.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\cos):	HAL_UART_SEND_ASC((unsigned char*)pPrikey,32);
+Usbdev_class.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_app\usb):					//HAL_UART_SEND_ASC((unsigned char*)&len_response,2);

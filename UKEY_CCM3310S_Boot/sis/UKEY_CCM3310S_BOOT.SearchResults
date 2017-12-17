@@ -1,0 +1,4 @@
+---- EnBootMode Matches (3 in 3 files) ----
+BootSwitch.h (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_boot\eflash):unsigned char EnBootMode(void);
+Main.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_boot\tj_ccore):	//EnBootMode();
+Usb_ccid.c (e:\支付通\##ukey_police_ccm3310s\ukey_ccm3310s_boot\usb):			EnBootMode();			
